@@ -25,8 +25,43 @@ cors_domains =
 
 [history]
 
+[file_manager]
+enable_object_processing = true
+
 [timelapse]
 output_path = ~/printer_data/timelapse/
 frame_path = /tmp/timelapse/printer
 autorender = False
+
+[update_manager Klippain-ShakeTune]
+type = git_repo
+origin = https://github.com/Frix-x/klippain-shaketune.git
+path = ~/klippain_shaketune
+virtualenv = /home/sovol/klippy-env
+requirements = requirements.txt
+system_dependencies = system-dependencies.json
+primary_branch = main
+managed_services = klipper
+
+[update_manager chopper-resonance-tuner]
+type = git_repo
+path = /home/sovol/chopper-resonance-tuner
+origin = https://github.com/MRX8024/chopper-resonance-tuner.git
+primary_branch = main
+managed_services = klipper
+
+[update_manager octoeverywhere]
+type = git_repo
+channel = beta
+path = /home/sovol/octoeverywhere
+origin = https://github.com/QuinnDamerell/OctoPrint-OctoEverywhere.git
+env = /home/sovol/octoeverywhere-env/bin/python
+requirements = requirements.txt
+install_script = install.sh
+managed_services = 
+	octoeverywhere
+
+[announcements]
+subscriptions = 
+	octoeverywhere
 
