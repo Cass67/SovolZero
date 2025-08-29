@@ -2,100 +2,26 @@
 
 <br>
 
-****************************************************************************************************************************
-### IF YOU RAN V1.0-V2.8 BE SURE TO UPDATE YOUR SLICER'S START GCODE OR NEW FEATURES WONT WORK!
-**Also you must update ALL the macro files as this new version will NOT work correctly with old files!**
-****************************************************************************************************************************
-
-- ### [UPDATING FROM A PREVIOUS VERSION CLICK HERE!!](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/blob/main/Other_Files/Version_Config_Changes/V2.9_Config_Changes.md)
-
 
 ****************************************************************************************************************************
-
-### Orca Slicer
-
-Make sure you have the latest 2.2.0 (beta2 or later) version of Orca Slicer DO NOT USE ORCA SLICER DOT NET!!! BAD!!!
-
-This link GOOD!
-
-- https://github.com/SoftFever/OrcaSlicer/releases
-
-******************************
-
-<br>
-
-## SOVOL SV08 FULL INSTALLER / UPDATER!!
-
-Choose to install the Kiuah G-code Shell command extension [click here!](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/blob/main/Documentation/Prerequisites/Prerequisites.md#optional---kiauh-g-code-shell-command-extension---optional) Do this first!
-
-### RUN FROM YOUR SSH TERMINAL TO START YOUR FULL INSTALL!
-
->[!NOTE]
->Do not use this unless you have a Sovol SV08 printer!!
-
->[!IMPORTANT]
->It is highly recommended to use this installer if you're installing fresh or updating from an older version! It will archive your old files for you.
-
-### RUN FROM YOUR SSH TERMINAL TO START YOUR FULL INSTALL!
-
-RUN THIS FIRST:
-```
-wget -O - https://raw.githubusercontent.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/refs/heads/main/Other_Files/Demon_Install_Script/Demon_Klipper_Essentials_Installer_SV08.sh | bash
-```
-Then run this to install your prerequisite. This script will ask you your prerequisite install choices.
-
-```
-sh ~/printer_data/config/Demon_Klipper_Essentials_Unified/Other_Files/Demon_Install_Script/Demon_Sovol_SV08_Prerequisites_Installer.sh
-```
-
-Your new files should now be avaiable to you on your printer!
-
-## DO NOT include them yet as there's some important stuff to do first!
-
->[!NOTE]
->Don't forget to reload your web browser window so new items will show & work correctly after installation!
-
-### You need to complete everything in the [General Setup For All Printers](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/blob/main/Documentation/INSTALL_INSTRUCTIONS/General_Setup_For_All_Printers/INSTALL_INSTRUCTIONS.md#the-file-structure-has-changed-for-v294-onwards) as well!
+### You need to complete everything in the [General Setup For All Printers](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/blob/main/Documentation/INSTALL_INSTRUCTIONS/General_Setup_For_All_Printers/INSTALL_INSTRUCTIONS.md#the-file-structure-has-changed-for-v294-onwards) first!
 
 ****************************************************************************************************************************
 
 <br>
 
-# NEW FEATURE: Demon_Diagnostics!
+# DEMON DISCORD!
 
-Once you have installed the main files this is an awesome new adaptive script (run from ssh) that will revolutionise your Demon_Klipper_Essentials_Unified install process! 
-Each time you run it the utility will scan your system in its current state & it'll show you your progress with getting everything setup, think of it as your installation copilot, or your own little red devil on your shoulder! 
+Come & join the community! We've just launched Demon Discord, help us start building a fantastic user focused resource for help & support from other users, share custom expansion gcode, or simply chat & show off your machine & your latest prints!
 
-### RUN FROM YOUR SSH TERMINAL WITH THIS COMMAND!
-```
-sh ~/printer_data/config/Demon_Klipper_Essentials_Unified/Other_Files/Demon_Diagnostics/Demon_Diagnostics.sh
-```
+<p align="left">
+    <img width="500" alt="Demon_Discord" src="https://github.com/user-attachments/assets/980b8b69-f78b-43b1-be27-cc1236fcf794" />
+    <https://discord.gg/KEbxw22AD4>
+</p>
 
-The script will tell you exactly what you currently have defined, included & installed at the time of the system scan! It'll also tell you if there's something not defined, or if there's something missing. It will tell you if a file is installed but not included or even if it's been defined/included multiple times! 
+[https://discord.gg/KEbxw22AD4](https://discord.gg/KEbxw22AD4)
 
-Your ssh terminal will tell you what you need to do to complete the install correctly & not miss anything. It'll warn you if anything is wrong.
-Run it at each stage of your install as many times as you like to make sure you're getting everything done! 
-
-### The goal is to make as many GREEN lines as possible!
-
-![DD-1](https://github.com/user-attachments/assets/68eb829e-f034-4659-bcf1-2160c603c4c4)
-
-
-The utility will scan & evaluate your printer.cfg & moonraker.conf files to check how you're doing & to make sure you don't miss anything that's needed by the macros.
-
-![DD-2](https://github.com/user-attachments/assets/8338c885-75ff-4e61-8b93-65bd7ead43c8)
-
-
-The system will also give you big red warnings with clear explanations when things are not correct!
-
-![DD-3](https://github.com/user-attachments/assets/ec9044af-cf72-49c0-85aa-5d2e79d8c3af)
-
-
->[!NOTE]
->THIS SCRIPT MAKES NO CHANGES TO ANY OF YOUR FILES 
->
->It just scans them safely & leaves them unedited & unchanged!
-
+<br>
 
 ****************************************************************************************************************************
 
@@ -111,6 +37,10 @@ The system will also give you big red warnings with clear explanations when thin
 >If you don't do this & you use the `Demon_User_Files_Updater` G-code shell command extension it will cause looping behaviour asking to extract files on restarts! You must define the Demon one ONLY!
 
 Comment out - Stock Sovol...
+
+```
+# [include plr.cfg]
+```
 ```
 # [save_variables]
 # filename =/home/sovol/printer_data/config/saved_variables.cfg
@@ -172,6 +102,8 @@ To do this use a # at the start of the line like this:
 ```
 # [include Macro.cfg]
 ```
+<br>
+
 Then set your fans like this in the printer.cfg file:
 ```
 [multi_pin fan_pins]
@@ -194,17 +126,20 @@ Comment out the stock entry do not delete it, it must look like this:
 # pin: extra_mcu:PB1
 # max_power: 1.0
 ```
+>[!TIP]
+>In Orca Slicer click the edit box on the printer name at the top of the screen to bring up the `Printer Settings` window, then in the `Basic information` tab at the very bottom under `Accessory` be sure to uncheck the `Auxiliary part cooling fan` option. This will stop Orca keeping the fans on after printing.
+
+<br>
 
 Rename the `[output_pin Main_LED]` section & change the cycle_time. As the stock value of `5` is incorrect. 
 
 ```
-[output_pin Printer_Lights]
-pin:PA3
-pwm: 1
-value:1
-cycle_time: 0.01
-shutdown_value: 0
+[led Printer_Lights]
+white_pin: PA3
+cycle_time: 0.001
+initial_WHITE: 1.0
 ```
+
 
 Be sure to comment out the Sovol [homing_override] section if you want to use the demon_homing_control file. If not leave this commented in & disable the demon file by commenting out its full content.
 
@@ -255,7 +190,7 @@ THIS FIRST SECTION IS OPTIONAL TO SLOW THE MACHINE DOWN - as the stock settings 
 kinematics: corexy
 max_velocity: 700
 max_accel: 8200
-max_accel_to_decel: 4500
+minimum_cruise_ratio: 0.5
 max_z_velocity: 20
 max_z_accel: 500
 square_corner_velocity: 5.0
@@ -366,18 +301,6 @@ initial_BLUE: 0.7
 ****************************************************************************************************************************
 
 <br>
-
-![DEMON_Display_Menu](https://github.com/user-attachments/assets/6a5a642d-c668-41dd-af7f-c8a7aee80a55)
-
-
-BE SURE TO INSTALL THE STUFF YOU NEED TO INSTALL!!!
-
-- https://github.com/3DPrintDemon/SV08/releases/tag/v1.0
-- https://github.com/3DPrintDemon/KAMP_LiTE/releases/tag/v1.0
-- https://github.com/3DPrintDemon/Voron-Stealthburner/blob/main/Firmware/RGB_LEDs.cfg
-- https://github.com/3DPrintDemon/Non_Blocking_Wait/releases/tag/Heat_Soak_Timers_V1.0
-  
-###### Note: These files are required for the macro pack to work correctly. Install even if you dont have any LEDs & set a dummy pin.
 
 ## OPTIONAL INSTALL for stock system!!
 ![DEMON_Armbian_Boot](https://github.com/user-attachments/assets/a3d92371-929e-4850-b05f-acfaed6575ba)

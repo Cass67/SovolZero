@@ -2,6 +2,8 @@
 
 # Previous & Existing Features
 
+THIS PAGE NEEDS UPDATING! MANY MORE FEATURES HAVE BEEN ADDED!
+
 - NEW! ORCA Slicer `Multi_Surface` handling! 
 - The printer knows what bed surface you choose to use & can add a pre-set Z offset for the print & remove it afterward! The system can even combine the surface offset with a filament or temperature based one! Don't worry though there are `Bed Saver` safety checks that should help stop you entering a wrong number & damaging your printer, especially when using the combine offset function!
 
@@ -25,10 +27,6 @@
 
 - NEW! Support for Klipper's `ADAPTIVE_MESH` system in the latest Klipper update
 - NOTE you need the latest version of Klipper to use this!
-
-If you own a Sovol SV06/Plus with a Sovol Klipper screen or a Sovol SV07/Plus & want to use the latest version of Klipper with Adaptive Meshing & more features you need to follow my How2 guide on how to update the Sovol Klipper screens on your printers.
-
-https://github.com/3DPrintDemon/How-to-Update-Sovol-Klipper-Screen-To-Latest-Klipper-SV06-and-SV07 
 
 - NEW! Adaptive Pressure Advance Mode! - APA - ORCA SLICER ONLY
 
