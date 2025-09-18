@@ -1,118 +1,113 @@
-# Guide to flash Kalico firmware on Sovol Zero with Katapult toolboard
-# assumes you completed - https://github.com/vvuk/printer-configs/wiki/Kalico-on-the-Sovol-Zero
-# and have kalico installed and working
+# Guide to Flash Kalico Firmware on Sovol Zero with Katapult Toolboard
 
-# The following keep you up to date with latest kalico firmware.
+This guide assumes you have completed the initial setup from [Kalico on the Sovol Zero wiki](https://github.com/vvuk/printer-configs/wiki/Kalico-on-the-Sovol-Zero) and have Kalico installed and working.
 
-# git stuff
+## Prerequisites
+- Ensure you are on the `sovol-zero` branch of your Kalico repository
+- Confirm your remotes are set up correctly (origin and upstream)
 
+## Update Kalico to Latest Version
+
+Navigate to your Kalico directory and update to the latest firmware.
+
+```bash
 cd ~/klipper
 
-# check branch, make sure we are on sovol-zero branch
+# Check current branch (should be sovol-zero)
 git branch
-#   main
-# * sovol-zero
 
-# if * is next to main, we need to switch branch
+# Switch to sovol-zero if necessary
 git checkout sovol-zero
 
-# if * is next to sovol-zero, we are good to go
-
-# check remotes
+# Check remotes
 git remote -v
 
-# origin	git@github.com:Cass67/sovol_zero_kalico.git (fetch)
-# origin	git@github.com:Cass67/sovol_zero_kalico.git (push)
-# upstream	https://github.com/KalicoCrew/kalico.git (fetch)
-# upstream	https://github.com/KalicoCrew/kalico.git (push)
-
-# if not upstream in place
-
-# add upstream
+# If upstream is not present, add it
 git remote add upstream https://github.com/KalicoCrew/kalico.git
 
-# fetch upstream changes
+# Fetch upstream changes
 git fetch upstream
 
-# merge upstream main into current branch, in this case sovol-zero
+# Merge upstream main into current branch
 git merge upstream/main
+```
 
-# we should be up to date now with latest kalico
+## Prepare System
 
-# lets go .....
+Stop Klipper and reboot for a fresh start.
 
-# prepare system
-
-# stop klipper
+```bash
+# Stop Klipper
 sudo systemctl stop klipper
 sudo systemctl disable klipper
 
-# reboot, start fresh
+# Reboot
 sudo reboot
+```
 
-# after reboot
+After reboot, navigate back to Klipper and query CAN bus.
 
-# cd klipper
+```bash
 cd ~/klipper
 
-# lets see what we have
-
-# canbus query
+# Query CAN bus
 ~/klippy-env/bin/python3 ~/klipper/scripts/canbus_query.py can0
+```
 
-# check printer.cfg for canbus_uuids to confirm
+Confirm the CAN bus UUIDs in your `printer.cfg`:
+- Main MCU: `e5093890c14e`
+- Extruder MCU: `62b63a8995c1`
 
-# [mcu]
-# canbus_uuid: e5093890c14e
+## Flash Mainboard
 
-# [mcu extruder_mcu]
-# canbus_uuid: 62b63a8995c1
+Compile and flash the mainboard firmware.
 
-# compile and flash
-
-# mainboard
-
+```bash
+# Configure and build
 make KCONFIG_CONFIG=main.mcu menuconfig
 make KCONFIG_CONFIG=main.mcu clean
 make KCONFIG_CONFIG=main.mcu -j4
 
-# main.mcu
+# Attempt CAN flash (may fail)
 ~/klippy-env/bin/python3 lib/canboot/flash_can.py -i can0 -u e5093890c14e -f out/klipper.bin
 
-# fails 100% of the time for me, so usb it is .....
+# If CAN flash fails, use USB
 ls /dev/serial/by-id/
-
-# use the correct id from mainboard
+# Replace with your mainboard's USB ID
 make KCONFIG_CONFIG=main.mcu FLASH_DEVICE=/dev/serial/by-id/usb-katapult_stm32h750xx_1C0028000451333138373234-if00 flash
+```
 
-# toolboard
+## Flash Toolboard
 
+Compile and flash the toolboard firmware.
+
+```bash
+# Configure and build
 make KCONFIG_CONFIG=toolboard.mcu menuconfig
 make KCONFIG_CONFIG=toolboard.mcu clean
 make KCONFIG_CONFIG=toolboard.mcu -j4
 
-# canbus query
+# Query CAN bus again to find Katapult UUID
 ~/klippy-env/bin/python3 ~/klipper/scripts/canbus_query.py can0
+# Example output: Found canbus_uuid=61755fe321ac for Katapult
 
-# finds, in my case
-# [can0] Found canbus_uuid=e5093890c14e, Application: Kalico, Unassigned
-# [can0] Found canbus_uuid=61755fe321ac, Application: Katapult, Unassigned
-
-# We want 61755fe321ac as its katapult id
-
-# toolboard.mcu, this likely works
+# Attempt CAN flash
 ~/klippy-env/bin/python3 lib/canboot/flash_can.py -i can0 -u 61755fe321ac -f out/klipper.bin
 
-# if fails
+# If CAN flash fails, use USB (ensure it's not the mainboard's ID)
 ls /dev/serial/by-id/
+# Replace with your toolboard's USB ID
+make KCONFIG_CONFIG=toolboard.mcu FLASH_DEVICE=/dev/serial/by-id/usb-katapult_stm32h750xx_<toolboard_id>-if00 flash
+```
 
-# use the correct id from not from mainboard
-make KCONFIG_CONFIG=toolboard.mcu FLASH_DEVICE=/dev/serial/by-id/usb-katapult_stm32h750xx_<whatever_id_not_from_mainboard>-if00 flash
+## Restore System
 
-# restore system
+Restart Klipper.
 
-# start klipper
+```bash
+# Start Klipper
 sudo systemctl start klipper
 sudo systemctl enable klipper
+```
 
-# we are done
+You are now done! Your Sovol Zero should be running the latest Kalico firmware.
