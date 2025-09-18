@@ -1,3 +1,5 @@
+# This repo is my current live Zero config i use... The readme explains how i get to the latest version of Kalico.. 
+# 
 # Guide to Flash Kalico Firmware on Sovol Zero with Katapult Toolboard
 
 This guide assumes you have completed the initial setup from [Kalico on the Sovol Zero wiki](https://github.com/vvuk/printer-configs/wiki/Kalico-on-the-Sovol-Zero) and have Kalico installed and working.
