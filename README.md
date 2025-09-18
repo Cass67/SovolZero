@@ -8,6 +8,8 @@ This guide assumes you have completed the initial setup from [Kalico on the Sovo
 
 ## Update Kalico to Latest Version
 
+### NOTE .. the merging of Kalico latest could break your working system, take care. 
+
 Navigate to your Kalico directory and update to the latest firmware.
 
 ```bash
@@ -111,3 +113,6 @@ sudo systemctl enable klipper
 ```
 
 You are now done! Your Sovol Zero should be running the latest Kalico firmware.
+
+At some point the hope is that the Zero will be fully supported by both Kalico and Klipper and we can dispense with the initial part of this ... 
+
