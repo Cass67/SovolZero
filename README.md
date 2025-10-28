@@ -56,6 +56,11 @@ cd ~/klipper
 
 # Query CAN bus
 ~/klippy-env/bin/python3 ~/klipper/scripts/canbus_query.py can0
+
+# [can0] Found canbus_uuid=e5093890c14e, Application: Kalico, Assigned: 04
+# [can0] Found canbus_uuid=62b63a8995c1, Application: Kalico, Assigned: 05
+
+
 ```
 
 Confirm the CAN bus UUIDs in your `printer.cfg`:
@@ -93,9 +98,16 @@ make KCONFIG_CONFIG=toolboard.mcu -j4
 
 # Query CAN bus again to find Katapult UUID
 ~/klippy-env/bin/python3 ~/klipper/scripts/canbus_query.py can0
-# Example output: Found canbus_uuid=61755fe321ac for Katapult
 
-# Attempt CAN flash
+#[can0] Found canbus_uuid=e5093890c14e, Application: Kalico, Unassigned
+#[can0] Found canbus_uuid=62b63a8995c1, Application: Kalico, Assigned: 05
+
+# Attempt CAN flash using toolboard id, might fail
+
+~/klippy-env/bin/python3 lib/canboot/flash_can.py -i can0 -u 62b63a8995c1 -f out/klipper.bin
+
+then if it does, use Katapult id ..
+
 ~/klippy-env/bin/python3 lib/canboot/flash_can.py -i can0 -u 61755fe321ac -f out/klipper.bin
 
 # If CAN flash fails, use USB (ensure it's not the mainboard's ID)
