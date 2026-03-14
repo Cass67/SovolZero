@@ -1,10 +1,40 @@
+# :gift: SUPPORT YOUR FRIENDLY 3DPrintDemon! :gift:
+
+>[!TIP]
+>Please consider supporting this project…. Even if it’s for a single donation!
+>
+>It really does make a difference & any amount you send is greatly appreciated!
+
+This macro pack is the cumulation of 3 years of work by one person alone, there have been countless late nights, missed family time, bottomless cups of coffee, as well as a boat load of effort & dedication. There’s been endless weeks of writing code & then probably that amount of time again at least thoroughly testing the files so that you can rest assured that they work & these macros will NOT damage or harm your printer in any way! Not counting any improper setup of course…
+
+Plus I provide the DEMON DISCORD to help anyone with getting DKEU working on their system!
+
+All of this is given away to the community for FREE.
+
+However I would like to kindly ask that if you gain any sort of benefit, joy, improved quality of life using your printer, or maybe if you use these macros as part of your side or regular business, for example in your print farm or to help make your craft fair items please consider making a pledge on the 3DPrintDemon Patreon page for however much you feel these macros are worth to your printing life & your business income! You can choose the amount of your donation & how long you are an active donating supporter!
+
+You can stay a supporter on the 3DPrintDemon Patreon sending donations of your choosing for as long as you like. Maybe it’s for just a month or two for single private users that would like to show your gratitude, or maybe you could consider ongoing support if you’re a business owner & make regular use of my work to aid your business.
+
+Active supporters have a special channel on the Demon Discord server & are provided with a higher level of support over non supporting members. Just make your discord user name known & you’ll be granted “supporter” privileges.
+
+:red_circle: [JOIN THE 3DPRINTDEMON PATREON](https://patreon.com/3dprintdemon) as an active donating member & show your support for my work!
+
+Your donations are used to feed my printers & give them the latest fancy pants new parts so I can continue adding new features, fixing bugs & providing time for helping you all to get the macros running & fixing issues you might experience!
+
+Be sure to use the website not the IOS app, it's cheaper!
+
+
+<br>
+<br>
+<br>
+
 # IF YOU'RE USING A SOVOL SV08 PRINTER!
 
 <br>
 
 
 ****************************************************************************************************************************
-### You need to complete everything in the [General Setup For All Printers](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/blob/main/Documentation/INSTALL_INSTRUCTIONS/General_Setup_For_All_Printers/INSTALL_INSTRUCTIONS.md#the-file-structure-has-changed-for-v294-onwards) first!
+### :red_circle: You need to complete everything in the [General Setup For All Printers](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/blob/main/Documentation/INSTALL_INSTRUCTIONS/General_Setup_For_All_Printers/INSTALL_INSTRUCTIONS.md#the-file-structure-has-changed-for-v294-onwards) first!
 
 ****************************************************************************************************************************
 
@@ -25,6 +55,68 @@ Come & join the community! We've just launched Demon Discord, help us start buil
 
 ****************************************************************************************************************************
 
+# SOVOL SV08 EDDY UPGRADE KIT USERS!
+
+>[!IMPORTANT]
+>TEMPORERY WORKAROUND
+>
+>Unitl I can update some systems within the macros you'll need to add the below commands, it will not make use of the nozzle scraper just yet, please watch this space.
+
+You must paste this into the demon_custom_expansion file under the commands in the _CUSTOM_PRE_LEVEL macro. Remember to enable it & the master enable at the top of the file.
+
+```
+    _Z_PARK
+    SET_HEATER_TEMPERATURE HEATER=extruder TARGET=150
+    TEMPERATURE_WAIT SENSOR=extruder MINIMUM={150 -2} MAXIMUM={150 + 5}
+
+    Z_OFFSET_CALIBRATION METHOD=force_overlay EXTRUDER_TEMP=150 BED_TEMP={printer.heater_bed.target}
+    M400
+    G0 Z10
+```
+****************************************************************************************************************************
+
+<br>
+
+# REGULAR INSTRUCTIONS
+
+<br>
+
+# Timelapse Use
+
+If you wish to continue to use Timelapse be sure to add this back in your slicer's `Before Layer Change` gcode box.
+```
+TIMELAPSE_TAKE_FRAME
+```
+
+<br>
+
+# PLR (Power Loss Recovery) Use
+
+You can now use the Sovol PLR system with DEKU macros! To do this simply add
+
+```
+LOG_Z
+```
+To your slicer's `Layer Change` box in `Machine Gcode`
+
+<img width="517" height="222" alt="ZLOG" src="https://github.com/user-attachments/assets/0626aa47-1335-407f-8a69-d8fd778dac18" />
+
+Be sure to include your PLR.cfg file now!
+```
+[include plr.cfg]
+```
+
+Then in the demon_user_settings file near the top set
+
+```
+variable_sovol_plr: True
+```
+
+Now Save & Restart.
+
+>[!TIP]
+>Once the macros see you have set the above variable `True` they will ask you if you wish to automatically download & install all required files to use the Sovol PLR system with DEKU macros. If you click `GET` on the pop up prompt your machine will reboot to bring the new files into the system.
+
 <br>
 
 # Edit your printer.cfg 
@@ -39,9 +131,6 @@ Come & join the community! We've just launched Demon Discord, help us start buil
 Comment out - Stock Sovol...
 
 ```
-# [include plr.cfg]
-```
-```
 # [save_variables]
 # filename =/home/sovol/printer_data/config/saved_variables.cfg
 ```
@@ -52,7 +141,7 @@ Comment out - Mainline...
 ```
 Add this to your `printer.cfg` BEFORE you include the macros. 
 
->]!IMPORTANT]
+>[!IMPORTANT]
 >Be sure to comment out any other [save_variables] already in your printer.cfg, if you don't the system can't update the demon_vars.cfg variable file.
 
 ```
@@ -67,22 +156,19 @@ Now be sure to include these...
 [include ./Heat_Soak_Sovol_SV08.cfg]
 [include ./RGB_LEDs.cfg]
 
-# FOR SOVOL KLIPPER UNCOMMENT LINE BELOW 
-# [include ./Demon_Klipper_Essentials_Unified/Other_Files/Demon_User_Files_Updater/Extract_Demon_User_Files_Sovol.cfg]
-
-# FOR MAINLINE UNCOMMENT LINE BELOW 
-# [include ./Demon_Klipper_Essentials_Unified/Other_Files/Demon_User_Files_Updater/Extract_Demon_User_Files_Biqu.cfg]
+[include ./Demon_Klipper_Essentials_Unified/Other_Files/Demon_User_Files_Updater/Demon_User_Files_Handler_v*.cfg]
 ```
 
 Be sure your `printer.cfg` file `[extruder]` section contains...
 
 ```
-max_extrude_only_velocity: 15
+max_extrude_only_distance: 200
 ```
 ```
 max_extrude_cross_section: 5
 ```
-This is used by the load/unload macros & is converted into feedrate of mm/s & is limited to 20
+
+Then add this...
 
 ```
 [idle_timeout]
@@ -248,14 +334,6 @@ max_adjust: 10
 
 <br>
 
-## Timelapse Use
-
-If you wish to continue to use Timelapse be sure to add this back in your slicer's `Before Layer Change` gcode box.
-```
-TIMELAPSE_TAKE_FRAME
-```
-<br>
-
 # Mainline users
 
 You will need to add these sections to your printer.cfg if they're not defined already. 
@@ -302,30 +380,42 @@ initial_BLUE: 0.7
 
 <br>
 
+# :gift: SUPPORT 3DPrintDemon! :gift:
+
+You can stay a supporter on the 3DPrintDemon Patreon sending donations of your choosing for as long as you like. Maybe it’s for just a month or two for single private users that would like to show your gratitude, or maybe you could consider ongoing support if you’re a business owner & make regular use of my work to aid your business.
+
+Active supporters have a special channel on the Demon Discord server & are provided with a higher level of support over non supporting members. Just make your discord user name known & you’ll be granted “supporter” privileges.
+
+:red_circle: [JOIN THE 3DPRINTDEMON PATREON](https://patreon.com/3dprintdemon) as an active donating member & show your support for my work!
+
+<br>
+<br>
+<br>
+
 ## OPTIONAL INSTALL for stock system!!
 ![DEMON_Armbian_Boot](https://github.com/user-attachments/assets/a3d92371-929e-4850-b05f-acfaed6575ba)
 
 
-- [HDMI DEMON Boot Screen!](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/blob/main/Documentation/INSTALL_INSTRUCTIONS/DEMON_Armbian_HDMI_Boot_Screen/DEMON_HDMI_Boot_Screen_Install.md)
+:red_circle: [HDMI DEMON Boot Screen!](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/blob/main/Documentation/INSTALL_INSTRUCTIONS/DEMON_Armbian_HDMI_Boot_Screen/DEMON_HDMI_Boot_Screen_Install.md)
 
 ## Other Great Upgrade Options For All SV08's
 Here is my SV08 nozzle cleaning & purge bucket!
 
-- https://www.printables.com/model/873006-sovol-sv08-silicone-nozzle-cleaner-purge-bucket-mi
+:red_circle: https://www.printables.com/model/873006-sovol-sv08-silicone-nozzle-cleaner-purge-bucket-mi
 
 Anti-vibration feet
 
-- https://www.printables.com/model/867321-sovol-sv08-low-profile-vibration-isolation-feet
+:red_circle: https://www.printables.com/model/867321-sovol-sv08-low-profile-vibration-isolation-feet
 
 M12 Probe mount
 
-- https://www.printables.com/model/870302-sovol-sv08-m12-inductive-probe-mount-lj12a3-4-zax
+:red_circle: https://www.printables.com/model/870302-sovol-sv08-m12-inductive-probe-mount-lj12a3-4-zax
 
 DIN rail mount
 
- - https://www.printables.com/model/867676-sovol-sv08-recessed-din-rail-mount-bracket
+ :red_circle: https://www.printables.com/model/867676-sovol-sv08-recessed-din-rail-mount-bracket
 
 ****************************************************************************************************************************
 
 
-- [Head on to General Setup For All Printers](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/blob/main/Documentation/INSTALL_INSTRUCTIONS/General_Setup_For_All_Printers/INSTALL_INSTRUCTIONS.md)
+:red_circle: [Head on to General Setup For All Printers](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/blob/main/Documentation/INSTALL_INSTRUCTIONS/General_Setup_For_All_Printers/INSTALL_INSTRUCTIONS.md)

@@ -1,11 +1,58 @@
 ************************************
-- ### [UPDATING FROM A PREVIOUS VERSION CLICK HERE!!](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/blob/main/Other_Files/Version_Config_Changes/V2.9_Config_Changes.md)
-************************************
 
 ![DEMON](https://github.com/user-attachments/assets/e3f166b4-200b-400f-a5d0-64d879cf33d5)
 
  
 # Welcome to 3DPrintDemon DEVILISHLY GOOD Klipper macros! 
+
+<br>
+
+# Introduction to DKEU3!
+
+:tada: WELCOME TO VERSION 3!! :tada:
+
+These macros are smart & have adaptive properties, they will shape themselves to your printer what you’re printing without any need to edit any code! 
+For example the macros know if your printer is CoreXY or bed slinger, they know if it's already homed so wont home it again, & can not only automatically shape itself to simple things like your printer’s bed size & what temperatures you’re printing at they can automatically choose & load the correct mesh for the filament type or temperature of your print, as your bed will slightly change shape the hotter it gets. They can do all that plus much, much more!
+
+## These macros will run on almost any COREXY or BED SLINGER (cartesian) Klipper printer with no changes needed to the macro files! 
+Small user setting changes will be required of course.
+
+These macros have been developed for use on almost anything from a Voron printer to an Ender 3, & anything else in between! They will check what sort of machine you have & try to adapt themselves to it automatically!
+
+So for example if you hit `MACHINE_LEVEL` on a COREXY printer you'll get a `QUAD_GANTRY_LEVEL`, but if you do the same on a bed slinger you'll get a `Z_TILT_ADJUST`. Plus the macros can even see if you have a COREXY machine that uses `Z_TILT_ADJSUT` & will make use of that system instead of QGL!
+
+Checks & Error Handling with clear & easy to understand messages to tell you what's wrong!
+
+<br>
+
+# IMPORTANT NOTICES:
+
+## :red_circle: Slicer G-code has changed! 
+
+There is a change to the BED placeholder for version 1.3 to correct an issue with temperatures when using Orca's multi surface options.
+
+This update now uses custom names & also provides a means of checking that you sent a file with the correct START Gcode for these macros! The system will halt the print & warn you if not! So no more sending a file to print with the wrong START Gcode & bad things happening!!
+
+### [Check & update here!](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/blob/main/Documentation/INSTALL_INSTRUCTIONS/General_Setup_For_All_Printers/Orca_Slicer_Setup.md)
+
+<br>
+
+## :red_circle: DEMON USER FILES UPDATER include command has changed! 
+
+The multiple Extract_Demon_User_Files_xxxx.cfg files have been superseded & removed for the latest version & replaced with a single file instead! You need to update your include command to account for this!
+
+If you're using the shell script extension then this is for you! This change greatly simplifies the setup & use of this feature, as well as a few others too!
+You will probably be seeing an error about the Demon User Files Handler Version having no attribute & your disk checker is no longer working.
+
+#### :warning: YOU MAY ALSO NEED TO UPDATE KIAUH & REINSTALL IT'S SHELL EXTENSION SCRIPT FOR NEW VERSION!! :warning:
+
+### [Check & update here!](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/blob/main/Documentation/INSTALL_INSTRUCTIONS/General_Setup_For_All_Printers/INSTALL_INSTRUCTIONS.md#demon-user-files-handler-include)
+
+<br>
+
+## SUPPORT FOR SOVOL'S PLR SYSTEM ADDED!!
+
+If you have a Klipper error or power outage on your Sovol printer running stock firmware don't worry! The DKEU macros now can make use of the Sovol PLR feature!
 
 <br>
 
@@ -17,73 +64,70 @@ A lot of time, love, coffee & lack of sleep testing has been poured into these m
 
 <br>
 
-# These macros will run on almost any COREXY or BED SLINGER (cartesian) Klipper printer with no changes needed to the macro files! 
-Small user setting changes will be required of course.
-
-These macros have been developed for use on almost anything from a Voron printer to an Ender 3, & anything else in between! They will check what sort of machine you have & try to adapt themselves to it automatically!
-
-So for example if you hit `MACHINE_LEVEL` on a COREXY printer you'll get a `QUAD_GANTRY_LEVEL`, but if you do the same on a bed slinger you'll get a `Z_TILT_ADJUST`. Plus the macros can even see if you have a COREXY machine that uses `Z_TILT_ADJSUT` & will make use of that system instead of QGL!
-
-Checks & Error Handling with clear & easy to understand messages to tell you what's wrong!
-
-<br>
-
 >[!IMPORTANT]
 >These macros rely on you setting the correct filament type in your slicer! BE SURE YOU DO THIS!
 
 <br>
-
-# Introduction
-
-These macros are smart & have adaptive properties, they will shape themselves to your printer what you’re printing without any need to edit any code! 
-For example the macros know if your printer is CoreXY or bed slinger, they know if it's already homed so wont home it again, & can not only automatically shape itself to simple things like your printer’s bed size & what temperatures you’re printing at they can automatically choose & load the correct mesh for the filament type or temperature of your print, as your bed will slightly change shape the hotter it gets. They can do all that plus much, much more!
-
 
 
 A macro pack features list is here....
 
 - #### [FEATURES LIST](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/blob/main/Documentation/Features/Features.md)
 
-Macro pack version update history is here....
-
-- #### [CHANGELOG](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/blob/main/Documentation/Update%20History/Demon_Changelog.md)
-
 ****************************************************************************************************************************
 
 <br>
 
-# All sounds great right!? Ok well here’s the tricky bit! 
-…Well its not that tricky because I got it all written down here for you to just copy/paste into your setup!
-
-**PLEASE CHECK ALL INSTRUCTIONS CAREFULLY!**
-
->[!CAUTION]
->Don’t just install & run the macros & wonder why they don’t work! They WILL need setting up once on your system. Damage to your machine may result if the macros are run without the prerequisites or without the correct setup before first use!
-
-You will need to edit your slicer's `Start G-code` & `End G-code` boxes to get the `PRINT_START` macro to work correctly. 
-
-****************************************************************************************************************************
-
-<br>
-
- # FULL INSTALL & SETUP INSTRUCTIONS...
+ # START HERE....!!!
 
 Click the link below to begin reading how to install!
 
-- ### [GENERAL SETUP FOR ALL PRINTERS](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/blob/main/Documentation/INSTALL_INSTRUCTIONS/General_Setup_For_All_Printers/INSTALL_INSTRUCTIONS.md)
+- ## [GENERAL INSTALL & SETUP FOR ALL PRINTERS](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/blob/main/Documentation/INSTALL_INSTRUCTIONS/General_Setup_For_All_Printers/INSTALL_INSTRUCTIONS.md)
+
+
 
 <br>
 
-## DO NOT SKIP THE PREREQUISITES INSTALLER AFTER RUNNING THE MAIN INSTALLER!
+Files listed here are installed by the main ssh installer, apart from the Kiauh Shell Script Extension which is an optional but recommended manual install. Links in the following page are provided for your infomation & include any required setup or additional information you will need! They will also help you choose which file version to install when using the prerequisites installer!
 
-Files listed here are installed by the prerequisites installer apart from the Kiauh Shell Script Extension which is an optional but recommended manual install. Links in the following page are provided for your infomation & include any required setup or additional information you will need! They will also help you choose which file version to install when using the prerequisites installer!
+- ###### [PREREQUISITES - Information Page](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/blob/main/Documentation/Prerequisites/Prerequisites.md)
 
-- ### [PREREQUISITES - Information Page](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/blob/main/Documentation/Prerequisites/Prerequisites.md)
+Changes list if you ran previous older versions. 
+
+- ###### [UPDATE CHANGES FROM PREVIOUS VERSIONS CLICK HERE!!](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/blob/main/Other_Files/Version_Config_Changes/V2.9_Config_Changes.md)
+
+****************************************************************************************************************************
 
 <br>
 
-- ### [UPDATING FROM A PREVIOUS VERSION CLICK HERE!!](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/blob/main/Other_Files/Version_Config_Changes/V2.9_Config_Changes.md)
+# :gift: SUPPORT YOUR FRIENDLY 3DPrintDemon! :gift:
 
+>[!TIP]
+>Please consider supporting this project…. Even if it’s for a single donation!
+>
+>It really does make a difference & any amount you send is greatly appreciated!
+
+This macro pack is the cumulation of 3 years of work by one person alone, there have been countless late nights, missed family time, bottomless cups of coffee, as well as a boat load of effort & dedication. There’s been endless weeks of writing code & then probably that amount of time again at least thoroughly testing the files so that you can rest assured that they work & these macros will NOT damage or harm your printer in any way! Not counting any improper setup of course…
+
+Plus I provide the DEMON DISCORD to help anyone with getting DKEU working on their system!
+
+All of this is given away to the community for FREE.
+
+However I would like to kindly ask that if you gain any sort of benefit, joy, improved quality of life using your printer, or maybe if you use these macros as part of your side or regular business, for example in your print farm or to help make your craft fair items please consider making a pledge on the 3DPrintDemon Patreon page for however much you feel these macros are worth to your printing life & your business income! You can choose the amount of your donation & how long you are an active donating supporter!
+
+You can stay a supporter on the 3DPrintDemon Patreon sending donations of your choosing for as long as you like. Maybe it’s for just a month or two for single private users that would like to show your gratitude, or maybe you could consider ongoing support if you’re a business owner & make regular use of my work to aid your business.
+
+Active supporters have a special channel on the Demon Discord server & are provided with a higher level of support over non supporting members. Just make your discord user name known & you’ll be granted “supporter” privileges.
+
+:red_circle: [JOIN THE 3DPRINTDEMON PATREON](https://patreon.com/3dprintdemon) as an active donating member & show your support for my work!
+
+Your donations are used to feed my printers & give them the latest fancy pants new parts so I can continue adding new features, fixing bugs & providing time for helping you all to get the macros running & fixing issues you might experience!
+
+Be sure to use the website not the IOS app, it's cheaper!
+
+
+<br>
+<br>
 <br>
 
 ****************************************************************************************************************************
@@ -101,6 +145,81 @@ Come & join the community! We've just launched Demon Discord, help us start buil
 
 [https://discord.gg/KEbxw22AD4](https://discord.gg/KEbxw22AD4)
 
+****************************************************************************************************************************
+
+<br>
+
+### NEW FEATURE: PELLET FORMING PURGE - POOP_N_SHOOT!
+
+![P_N_S](https://github.com/user-attachments/assets/dc9cafb2-aaea-4c4e-b18e-8c8c51f850dc)
+
+There's a whole new way to purge filament on any printer! Use a dedicated purge area or the edge of your print bed to create a poop pellet & use the nozzle/toolhead to shoot it into the bucket! Fully customisable features!
+
+Activate with the demon_user_settings_cleaner_variables .cfg file!
+
+<br>
+
+<details>
+    <summary>
+        <b>
+        :red_circle: Click to expand - FEATURE: PELLET FORMING PURGE SYSTEM!
+        </b>
+    </summary>
+<p>
+</p>
+Choose many diiferent options, adjust & tune settings, including...
+
+Positions - place the pellet where you want!
+
+Parking - park the toolhead where you like!
+
+Height - choose your height!
+
+Speed - choose how fast or slow!
+
+Temps - select what temps you want!
+
+Feed lengths - choose load/unload & purge lengths!
+
+Poop flow rate - tune the flow of poop!
+
+Shoot direction - shoot your poop any way you like!
+
+Program extras - pauses, extra cleans, turn fans on sooner!
+
+Random Spot - never shoot from the same spot twice! Vary pellet placement within a chosen range!
+
+Plus the printer knows if you have loaded or unloaded the filament even if you restart! It will know if you need a full load or unload or a simple purge & clean!!
+
+Watch the [demo video!](https://www.youtube.com/watch?v=8Ou42thloCI)!
+
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=8Ou42thloCI
+" target="_blank"><img src="http://img.youtube.com/vi/8Ou42thloCI/0.jpg" 
+alt="IMAGE ALT TEXT HERE" width="500" height="360" border="10" /></a>
+
+</details>
+
+<br>
+
+>[!CAUTION]
+>THIS SYSTEM REQUIRES ACCURATE SETUP & TUNING, IT WILL NOT WORK CORRECTLY OR RELIABLY IF YOU DO NOT TUNE IT WELL! PLEASE SPEND TIME DOING SO IF YOU USE IT!
+
+****************************************************************************************************************************
+
+<br>
+
+### INSTALL THE SOVOL AUTO FILAMENT FEEDER ON SOVOL PRINTERS WITH STOCK FIRMWARE!
+
+<img width="400" alt="SOVOL AUTO FEEDER" src="https://github.com/user-attachments/assets/7c3f532e-55a0-4c6f-9f95-96d337471b52" />
+
+If you have a longer way to run your filament to your extruder, or if you run large/heavy (3-5kg) filament rolls this unit can help improve filament feeding & help reduce strain on your extruder motor! With these macros it'll automatically feed in & feed out your filament for the entire run to your extruder! Learn more [CLICK HERE!](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/blob/main/Documentation/INSTALL_INSTRUCTIONS/General_Setup_For_All_Printers/SOVOL_AUTO_FEEDER.md)
+
+>[!NOTE]
+>Recent Klipper updates have changed the way motion is controlled. This has rendered these units unusable with mainline Klipper for now.
+>Stock Sovol versions should be fine, as they're older.
+
+****************************************************************************************************************************
+
 <br>
 
 # Orca Slicer Heads-up!
@@ -111,7 +230,7 @@ Do NOT use Orca Slicer from anywhere other than GitHub or Flathub. Orca Slicer D
 
 Use this link....
 
-- https://github.com/SoftFever/OrcaSlicer/releases
+:red_circle: https://github.com/SoftFever/OrcaSlicer/releases
 
 ![Orca Fail](https://github.com/user-attachments/assets/873834af-e9ce-4632-af02-4e3ea133071a)
 
@@ -126,12 +245,12 @@ How about fully automated power on/off control with auto cool down & shutdown af
 
 Find out here!
 
-- [Auto Shutdown Relay!](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/blob/main/Documentation/INSTALL_INSTRUCTIONS/General_Setup_For_All_Printers/INSTALL_INSTRUCTIONS.md#auto-shutdown-moonraker-power-device)
+:red_circle: [Auto Shutdown Relay!](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/blob/main/Documentation/INSTALL_INSTRUCTIONS/General_Setup_For_All_Printers/INSTALL_INSTRUCTIONS.md#auto-shutdown-moonraker-power-device)
 
 Or maybe you're using a printer with a bedside mounted Z endstop switch & sensorless homing & you want an AUTO E STOP system so that if your nozzle misses your endstop switch the printer knows there's a problem!
 
-- [Voron 2.4 Auto Emergency Stop System (AES)](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/tree/main/Documentation/INSTALL_INSTRUCTIONS/Voron_2.4_AES_System_Auto_Emergency_Stop_For_Z_Endstop_Switch/AES.md)
+:red_circle: [Voron 2.4 Auto Emergency Stop System (AES)](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/tree/main/Documentation/INSTALL_INSTRUCTIONS/Voron_2.4_AES_System_Auto_Emergency_Stop_For_Z_Endstop_Switch/AES.md)
 
 If thats not enough how about creating your very own online auto updating backup of all your config files here on Github in your own private repo?!
 
-- [Auto backup your printer!](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/tree/main/Documentation/INSTALL_INSTRUCTIONS/Auto_Backup_Your_Printer/Git_Backup.md)
+:red_circle: [Auto backup your printer!](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/tree/main/Documentation/INSTALL_INSTRUCTIONS/Auto_Backup_Your_Printer/Git_Backup.md)

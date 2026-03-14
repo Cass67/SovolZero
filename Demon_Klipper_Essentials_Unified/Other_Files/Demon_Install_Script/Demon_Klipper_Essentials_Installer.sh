@@ -2,29 +2,33 @@
 
 #!/bin/bash
 
-# 3DPrintDemon Klipper Essentials Installer Script v1.1.1
+# 3DPrintDemon Klipper Essentials Installer Script v1.1.2
 
 # Define
 U="$USER"
-DIR="/home/$U/printer_data/config/Demon_Klipper_Essentials_Unified"
+DDIR="/home/$U/printer_data/config/Demon_Klipper_Essentials_Unified"
 PDIR="/home/$U/printer_data/config/Previous_Demon_Macros"
 DUF="/home/$U/printer_data/config/Demon_User_Files"
 PDUF="/home/$U/printer_data/config/Demon_User_Files/Previous_Versions"
+IDIR="/home/$U/printer_data/config/Demon_Klipper_Essentials_Unified/Other_Files/Demon_Install_Script"
+SDIR="/home/$U/printer_data/config/Demon_Klipper_Essentials_Unified/Other_Files/DEMON_User_Files_SOURCE"
+BRIDGE="Installer_Bridge.sh"
+
 # Check if directory not exist
 
 echo "
 ************************************************************************************************
                    Weclome to the 3DPrintDemon Klipper Essentials Unified 
-                                  Installer Script v1.1.1
+                                  Installer Script v1.1.2
 ************************************************************************************************
 
 Starting installer..."
 
-if [ ! -d "$DIR" ]; then
-   echo "Repo $DIR does not exist."
+if [ ! -d "$DDIR" ]; then
+   echo "Directory $DDIR does not exist."
 
 else
-    echo "Directory $DIR already exists."
+    echo "Directory $DDIR already exists."
   
         if [ ! -d "$PDIR" ]; then
             # Make Directory
@@ -40,7 +44,7 @@ fi
 
 cd /home/$U/printer_data/config
 git clone https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified.git
-echo "Repo $DIR cloned."
+echo "Repo $DDIR cloned."
 
 cd /home/$U
 wget https://raw.githubusercontent.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/refs/heads/main/Other_Files/Demon_Vars/demon_vars.cfg -O demon_vars.cfg --backups=0
@@ -59,7 +63,7 @@ if [ ! -d "$DUF" ]; then
 else
     echo "Directory $DUF already exists." 
      
-    if [ "$(ls -A $DIR)" ]; then
+    if [ "$(ls -A $DUF)" ]; then
          echo "Directory $DUF is not empty."
          
         if [ ! -d "$PDUF" ]; then
@@ -82,16 +86,10 @@ fi
 echo "Extracting Demon_User_Files to $DUF."
 cp /home/$U/printer_data/config/Demon_Klipper_Essentials_Unified/Other_Files/DEMON_User_Files_SOURCE/*.cfg /home/$U/printer_data/config/Demon_User_Files --backup=numbered
 
-echo "Operations complete. Don't forget to run the Prerequisites installer...!"
+wait
 
+sh /home/$U/printer_data/config/Demon_Klipper_Essentials_Unified/Other_Files/Demon_Install_Script/Installer_Bridge.sh
 
-
-
-
-
-
-
-
-
+rm /home/$U/Demon_Klipper_Essentials_Installer.sh
 
 
