@@ -32,10 +32,10 @@ enable_object_processing: true
 #channel: dev
 #refresh_interval: 168
 
-#[timelapse]
-#output_path: ~/printer_data/timelapse/
-#frame_path: /tmp/timelapse/printer
-#autorender: False
+[timelapse]
+output_path: ~/printer_data/timelapse/
+frame_path: /tmp/timelapse/printer
+autorender: False
 
 #Crowsnest update_manager entry
 [update_manager crowsnest]
@@ -45,22 +45,22 @@ origin: https://github.com/mainsail-crew/crowsnest.git
 managed_services: crowsnest
 install_script: tools/pkglist.sh
 
-#[update_manager klipper]
-#type: git_repo
-#primary_branch: master
-#path: ~/klipper
-#origin: https://github.com/Klipper3d/klipper
+[update_manager klipper]
+type: git_repo
+primary_branch: sovol-zero         # or 'dev', or any custom branch name
+path: ~/klipper
+origin: https://github.com/Cass67/sovol_zero_kalico
 
 ## Klippain Shake&Tune automatic update management
-#[update_manager Klippain-ShakeTune]
-#type: git_repo
-#origin: https://github.com/Frix-x/klippain-shaketune.git
-#path: ~/klippain_shaketune
-#virtualenv: /home/sovol/klippy-env
-#requirements: requirements.txt
-#system_dependencies: system-dependencies.json
-#primary_branch: main
-#managed_services: klipper
+[update_manager Klippain-ShakeTune]
+type: git_repo
+origin: https://github.com/Frix-x/klippain-shaketune.git
+path: ~/klippain_shaketune
+virtualenv: /home/sovol/klippy-env
+requirements: requirements.txt
+system_dependencies: system-dependencies.json
+primary_branch: main
+managed_services: klipper
 
 # [update_manager Demon_Klipper_Essentials_Unified]
 # type: git_repo
@@ -70,12 +70,12 @@ install_script: tools/pkglist.sh
 # is_system_service: False
 # managed_services: klipper
 
-#[update_manager chopper-resonance-tuner]
-#type: git_repo
-#path: /home/sovol/chopper-resonance-tuner
-#origin: https://github.com/MRX8024/chopper-resonance-tuner.git
-#primary_branch: main
-#managed_services: klipper
+[update_manager chopper-resonance-tuner]
+type: git_repo
+path: /home/sovol/chopper-resonance-tuner
+origin: https://github.com/MRX8024/chopper-resonance-tuner.git
+primary_branch: main
+managed_services: klipper
 
 [include octoeverywhere-system.cfg]
 

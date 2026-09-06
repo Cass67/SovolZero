@@ -1,0 +1,8 @@
+
+# secrets - never commit (Obico link token)
+moonraker-obico.cfg
+moonraker-obico-update.cfg
+
+# package blobs
+*.deb
+*.deb.*

@@ -5,13 +5,12 @@ klippy_uds_address = /home/sovol/printer_data/comms/klippy.sock
 
 [authorization]
 trusted_clients = 
-	192.168.0.0/16
+	172.17.0.0/16
 	10.0.0.0/8
 	127.0.0.0/8
 	169.254.0.0/16
 	172.16.0.0/12
 	192.168.0.0/16
-	FC00::/7
 	FE80::/10
 	::1/128
 cors_domains = 
@@ -26,24 +25,8 @@ cors_domains =
 
 [history]
 
-[update_manager]
-channel = dev
-refresh_interval = 168
-
-[update_manager mainsail]
-path = /home/sovol/mainsail
-repo = mainsail-crew/mainsail
-channel = stable
-type = web
-persistent_files = 
-	config.json
-
-[update_manager mainsail-config]
-managed_services = klipper
-origin = https://github.com/mainsail-crew/mainsail-config.git
-path = /home/sovol/mainsail-config
-primary_branch = master
-type = git_repo
+[file_manager]
+enable_object_processing = true
 
 [update_manager crowsnest]
 type = git_repo
@@ -51,4 +34,40 @@ path = ~/crowsnest
 origin = https://github.com/mainsail-crew/crowsnest.git
 managed_services = crowsnest
 install_script = tools/pkglist.sh
+
+[update_manager octoeverywhere]
+type = git_repo
+channel = beta
+path = /home/sovol/octoeverywhere
+origin = https://github.com/QuinnDamerell/OctoPrint-OctoEverywhere.git
+env = /home/sovol/octoeverywhere-env/bin/python
+requirements = requirements.txt
+install_script = install.sh
+managed_services = 
+	octoeverywhere
+
+[announcements]
+subscriptions = 
+	octoeverywhere
+
+[update_manager mainsail-config]
+type = git_repo
+primary_branch = master
+path = ~/mainsail-config
+origin = https://github.com/mainsail-crew/mainsail-config.git
+managed_services = klipper
+
+[update_manager mainsail]
+type = web
+channel = stable
+repo = mainsail-crew/mainsail
+path = ~/mainsail
+
+[update_manager klipper_tmc_autotune]
+primary_branch = main
+managed_services = klipper
+origin = https://github.com/andrewmcgr/klipper_tmc_autotune
+path = /home/sovol/klipper_tmc_autotune
+channel = dev
+type = git_repo
 
