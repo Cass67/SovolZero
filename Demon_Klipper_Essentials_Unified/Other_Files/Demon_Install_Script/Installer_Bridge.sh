@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# 3DPrintDemon Installer Bridge Script v1.0.0
+# 3DPrintDemon Installer Bridge Script v1.0.1
 
 # Define
 U="$USER"
@@ -17,7 +17,7 @@ if [ ! -d "$DDIR" ]; then
    Please ensure that DKEU is correctly instslled on your system."
 
 else 
-    echo "$DDIR successfully loacated."
+    echo "$DDIR successfully located."
     echo "
 ************************************************************************************************"
 

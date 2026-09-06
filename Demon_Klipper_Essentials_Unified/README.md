@@ -11,11 +11,16 @@
 
 :tada: WELCOME TO VERSION 3!! :tada:
 
-These macros are smart & have adaptive properties, they will shape themselves to your printer what you’re printing without any need to edit any code! 
+
+
+This repository a full ecosystem encompassing a suite of smart & adaptive integrated macros that dramatically improve user experience. They will shape themselves to your printer what you’re printing without any need to edit any code!
+
 For example the macros know if your printer is CoreXY or bed slinger, they know if it's already homed so wont home it again, & can not only automatically shape itself to simple things like your printer’s bed size & what temperatures you’re printing at they can automatically choose & load the correct mesh for the filament type or temperature of your print, as your bed will slightly change shape the hotter it gets. They can do all that plus much, much more!
 
-## These macros will run on almost any COREXY or BED SLINGER (cartesian) Klipper printer with no changes needed to the macro files! 
-Small user setting changes will be required of course.
+### These macros will run on almost any COREXY or BED SLINGER (cartesian) Klipper printer with no changes needed to the macro files! 
+
+###### Small user setting changes will be required of course.
+
 
 These macros have been developed for use on almost anything from a Voron printer to an Ender 3, & anything else in between! They will check what sort of machine you have & try to adapt themselves to it automatically!
 
@@ -25,15 +30,73 @@ Checks & Error Handling with clear & easy to understand messages to tell you wha
 
 <br>
 
-# IMPORTANT NOTICES:
+## ***Made to make your printing life easier & your printer SMARTER!***
 
-## :red_circle: Slicer G-code has changed! 
 
-There is a change to the BED placeholder for version 1.3 to correct an issue with temperatures when using Orca's multi surface options.
+- ### FULLY AI CODE FREE! :no_entry_sign: :robot: :no_entry_sign:
+
+- No AI has been used to create these macros! A lot of time, love, coffee & lack of sleep testing has been poured into these macros! They have all been written 100% by a human!
+
+- SUPPORT FOR SOVOL'S PLR SYSTEM!! If you have a Klipper error or power outage on your Sovol SV08 or SV08 MAX printer running stock firmware don't worry! The DKEU macros now can make use of the Sovol PLR feature!
+
+****************************************************************************************************************************
+
+<br>
+
+# IMPORTANT NOTICES - READ BEFORE YOU UPDATE DKEU:
+
+<br>
+
+## :red_circle: OLDER KLIPPER VERSIONS ON STOCK FACTORY MACHINES!
+
+As of 24th of May 2026 the latest version of DKEU now has this feature fully automated & the system will KNOW if you have a legacy version of Klipper or not & it will know to use legacy mode or not!
+### LATEST COMMIT USERS OF DKEU DO NOT HAVE TO DO THIS - THE VARIABLE HAS BEEN REMOVED
+
+<details>
+    <summary>
+        <b>
+        :red_circle: Click To Expand - OLDER VERSIONS OF DKEU ONLY! v3.1.1 - v3.2.0
+        </b>
+    </summary>
+<p>
+</p>
+In order to bring DKEU inline with recent changes to Klipper’s probing & measuring systems where the old method is now depreciated & is being removed the macros have been updated. 
+Users with new systems & mainline klipper need not do anything except update their Klipper version to the latest commit. However users with stock factory or “fixed” versions of klipper like on Sovol printers for example will need to activate the old_klipper_version variable to continue using the BED_CHECKER heat soak system. 
+
+#### :warning: If users of old stuck systems don’t set this variable True then BED_CHECKER heat soak will error out & cancel your print as your old version of klipper is no longer compatible with commands required to run it so a legacy mode must be enabled. :warning:
+
+<img width="555" height="96" alt="BCHS Old Klipper" src="https://github.com/user-attachments/assets/bbc1c7b6-7e52-4419-b034-27c82f930e43" />
+
+</details>
+
+<br>
+
+## :red_circle: Slicer G-code has changed! - 17/04/2026
+
+The new version of the Machine G-code is v1.4 & it allows ORCA SLICER USERS to make use of the new Demon Print/Resume Object Avoidance system!
+
+This system stops your printer crashing into printed parts when pausing, changing filament & ending the print in printing by object mode.
+
+>[!IMPORTANT]
+>THIS REQUIRES ORCA SLICER VERSION 2.3.2! 
 
 This update now uses custom names & also provides a means of checking that you sent a file with the correct START Gcode for these macros! The system will halt the print & warn you if not! So no more sending a file to print with the wrong START Gcode & bad things happening!!
 
-### [Check & update here!](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/blob/main/Documentation/INSTALL_INSTRUCTIONS/General_Setup_For_All_Printers/Orca_Slicer_Setup.md)
+### [CLICK & UPDATE HERE!](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/blob/main/Documentation/INSTALL_INSTRUCTIONS/General_Setup_For_All_Printers/Orca_Slicer_Setup.md)
+
+<br>
+
+## :red_circle: :warning: UPDATE KIAUH & REINSTALL THE SHELL SCRIPT EXTENSION! :warning: :red_circle:
+If your version of Kiauh & its installed shell script extension is too old it will impact DKEU functionality & stop all File Handler operations from completing correctly.
+Click the link below to see how to do this within the DKEU Troubleshooting section.
+
+### [CLICK HERE - TROUBLESHOOTING - KIAUH](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/blob/main/Documentation/INSTALL_INSTRUCTIONS/General_Setup_For_All_Printers/INSTALL_INSTRUCTIONS.md#warning-you-may-also-need-to-update-kiauh--reinstall-its-shell-extension-script-for-new-version-warning)
+
+<br>
+
+## :red_circle: VARIABLES RENAMED - demon_user_settings_v3.1.2.cfg
+
+Eddy Tap settings have been renamed for this version. Manually check values after using config updater tool for these settings starting line 98
 
 <br>
 
@@ -44,45 +107,26 @@ The multiple Extract_Demon_User_Files_xxxx.cfg files have been superseded & remo
 If you're using the shell script extension then this is for you! This change greatly simplifies the setup & use of this feature, as well as a few others too!
 You will probably be seeing an error about the Demon User Files Handler Version having no attribute & your disk checker is no longer working.
 
-#### :warning: YOU MAY ALSO NEED TO UPDATE KIAUH & REINSTALL IT'S SHELL EXTENSION SCRIPT FOR NEW VERSION!! :warning:
-
-### [Check & update here!](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/blob/main/Documentation/INSTALL_INSTRUCTIONS/General_Setup_For_All_Printers/INSTALL_INSTRUCTIONS.md#demon-user-files-handler-include)
+### [New include command here!](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/blob/main/Documentation/INSTALL_INSTRUCTIONS/General_Setup_For_All_Printers/INSTALL_INSTRUCTIONS.md#demon-user-files-handler-include)
 
 <br>
 
-## SUPPORT FOR SOVOL'S PLR SYSTEM ADDED!!
-
-If you have a Klipper error or power outage on your Sovol printer running stock firmware don't worry! The DKEU macros now can make use of the Sovol PLR feature!
-
-<br>
-
-## NOW WITH FULL EDDY NG SUPPORT!!!
-
-A lot of time, love, coffee & lack of sleep testing has been poured into these macros! They have all been written 100% by a human! Fully ai code Free! No ai has been used to create them! 
-
-**Made to make your printing life easier & your printer SMARTER!**
-
-<br>
-
->[!IMPORTANT]
->These macros rely on you setting the correct filament type in your slicer! BE SURE YOU DO THIS!
-
-<br>
-
-
-A macro pack features list is here....
-
-- #### [FEATURES LIST](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/blob/main/Documentation/Features/Features.md)
 
 ****************************************************************************************************************************
 
 <br>
 
- # START HERE....!!!
+ # :arrow_down: START HERE....!!! :arrow_down:
+
+ >[!IMPORTANT]
+>These macros rely on you setting the correct filament type in your slicer! BE SURE YOU DO THIS!
+
+<br>
+
 
 Click the link below to begin reading how to install!
 
-- ## [GENERAL INSTALL & SETUP FOR ALL PRINTERS](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/blob/main/Documentation/INSTALL_INSTRUCTIONS/General_Setup_For_All_Printers/INSTALL_INSTRUCTIONS.md)
+ ## :red_circle: [GENERAL INSTALL & SETUP FOR ALL PRINTERS](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/blob/main/Documentation/INSTALL_INSTRUCTIONS/General_Setup_For_All_Printers/INSTALL_INSTRUCTIONS.md)
 
 
 
@@ -149,7 +193,55 @@ Come & join the community! We've just launched Demon Discord, help us start buil
 
 <br>
 
-### NEW FEATURE: PELLET FORMING PURGE - POOP_N_SHOOT!
+# NEW FEATURE: DEMON CLEANER PAD RECOGNISER!
+
+Making your DKEU cleaning system setup a breeze! 
+
+Use this guided UI tool to set up your DKEU cleaner's main features & automatically save them to file!
+
+>[!TIP]
+>Be sure to reload the new [Demon Mainsail Backup .json](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/tree/main/Other_Files/DEMON_Macro_layout_JSON) file to bring up the new macro button after updating your install of DKEU to the latest version.
+>
+>Plus don't forget to update your KlipperScreen.conf file to add the new Prepare menu button! Check expandable section, [CLICK HERE!](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/blob/main/Documentation/INSTALL_INSTRUCTIONS/General_Setup_For_All_Printers/INSTALL_INSTRUCTIONS.md#tv-modifying-klipperscreen-for-new-features-tv)
+
+<br>
+
+A system so good you'll want to use it more than just once!
+
+## Watch the video below!
+
+https://github.com/user-attachments/assets/fb06ec52-14a2-4be6-8292-33b9ae9689e9
+
+Watch on YOUTUBE: https://youtu.be/GBVCe6y7QIY?si=OK8HPl1_cyRH0lZd
+
+
+<br>
+
+## On Printer Interface
+
+<img width="1394" height="956" alt="DCPR 1" src="https://github.com/user-attachments/assets/00d87ac4-577d-4086-b50c-1829cef27788" />
+<img width="1303" height="845" alt="DCPR 2" src="https://github.com/user-attachments/assets/0492b580-041c-4433-8d01-8ef707b5a6c2" />
+
+<br>
+
+## Mainsail Interface
+
+<img width="1274" height="859" alt="DCPR 4" src="https://github.com/user-attachments/assets/3f701976-28c5-41c4-b3ac-87959cd6dcf3" />
+<img width="1573" height="1081" alt="DCPR 3" src="https://github.com/user-attachments/assets/ff83a4f9-9c73-4969-a50e-e11ea112ca74" />
+
+
+
+
+
+
+<br>
+
+<br>
+
+<br>
+
+
+# FEATURE: PELLET FORMING PURGE - POOP_N_SHOOT!
 
 ![P_N_S](https://github.com/user-attachments/assets/dc9cafb2-aaea-4c4e-b18e-8c8c51f850dc)
 
@@ -217,6 +309,14 @@ If you have a longer way to run your filament to your extruder, or if you run la
 >[!NOTE]
 >Recent Klipper updates have changed the way motion is controlled. This has rendered these units unusable with mainline Klipper for now.
 >Stock Sovol versions should be fine, as they're older.
+
+****************************************************************************************************************************
+
+<br>
+
+A macro pack features list is here....
+
+- #### [FEATURES LIST](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/blob/main/Documentation/Features/Features.md)
 
 ****************************************************************************************************************************
 

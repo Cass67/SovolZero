@@ -376,6 +376,22 @@ initial_GREEN: 0.4
 initial_BLUE: 0.7  
 ```
 
+<br>
+
+# Setup Your Nozzle Cleaning System
+
+From DKEU v3.2.1 you can use the new guided DEMON CLEANER PAD RECOGNISER system! Make your cleaner setup a breeze!
+Important variables are set by the user as the system guides you through the process step by step with the UI! Choose cleaning modes, locate your nozzle cleaner, set XY start positions, set cleaning heights, & draw out cleaning paths! Plus auto save your settings to file!
+
+<img width="1303" height="845" alt="DCPR 2" src="https://github.com/user-attachments/assets/a1525748-45e3-4f87-be80-b3a07d17161c" />
+
+<img width="1573" height="1081" alt="DCPR 3" src="https://github.com/user-attachments/assets/5e0feb6e-6b39-41c1-911a-fca6280f65a1" />
+
+<br>
+<br>
+<br>
+
+
 ****************************************************************************************************************************
 
 <br>

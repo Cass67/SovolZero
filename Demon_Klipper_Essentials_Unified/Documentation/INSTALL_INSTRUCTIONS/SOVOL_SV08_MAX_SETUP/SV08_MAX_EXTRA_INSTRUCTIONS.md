@@ -56,6 +56,18 @@ Come & join the community! We've just launched Demon Discord, help us start buil
 
 <br>
 
+## :red_circle: :warning: UPDATE KIAUH & REINSTALL THE SHELL SCRIPT EXTENSION! :warning: :red_circle:
+If your version of Kiauh & its installed shell script extension is too old it will impact DKEU functionality & stop all File Handler operations from completing correctly.
+Click the link below to see how to do this within the DKEU Troubleshooting section.
+
+### [CLICK HERE - TROUBLESHOOTING - KIAUH](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/blob/main/Documentation/INSTALL_INSTRUCTIONS/General_Setup_For_All_Printers/INSTALL_INSTRUCTIONS.md#warning-you-may-also-need-to-update-kiauh--reinstall-its-shell-extension-script-for-new-version-warning)
+
+<br>
+
+****************************************************************************************************************************
+
+<br>
+
 # HOW TO FIX & UPDATE YOUR SOVOL EMMC IMAGE! - OPTIONAL
 
 To update system packages & to update latest software versions, plus how to get rid of those annoying Moonraker Warnings for good!
@@ -77,6 +89,20 @@ This allows Klipper & DKEU to monitor the heater's actual temperature & to contr
 <br>
 
 ****************************************************************************************************************************
+
+<br>
+
+# MAINLINE YOUR MAX! - OPTIONAL
+
+This is a simple conversion of the stock Sovol image to mainline. No EMMC flashing, no ST Link required. Only downside you'er still on the stock image, but with mainline Klipper!
+
+:red_circle: [CLCIK HERE TO MAINLINE YOUR MAX](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/blob/main/Documentation/INSTALL_INSTRUCTIONS/SOVOL_SV08_MAX_SETUP/Mainline_Your_SV08_MAX.md)
+
+<br>
+
+****************************************************************************************************************************
+
+<br>
 
 # Use Your SV08 Max WITHOUT The Sovol Filament Buffer/Feeder
 
@@ -360,6 +386,17 @@ Restart the printer.
 
 [DON'T FORGET TO DO ALL THE OTHER STUFF IN THE GENERAL SETUP TOO!](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/blob/main/Documentation/INSTALL_INSTRUCTIONS/General_Setup_For_All_Printers/INSTALL_INSTRUCTIONS.md)
 
+<br>
+
+>[!WARNING]
+>Make sure you comment out the line below as it will give you a big red Klipper error screen if not!
+
+In the `[z_offest_calibration]` section comment out...
+
+```
+center_xy_position: -10,10
+```
+
 >[!IMPORTANT]
 >Be sure to comment out the Sovol/Mainline [save_variables] section in the printer.cfg file!!
 
@@ -631,6 +668,22 @@ icon: arrow-up
 method: printer.gcode.script
 params: {"script":"_FEED_OUT"}
 ```
+
+<br>
+
+# Setup Your Nozzle Cleaning System
+
+From DKEU v3.2.1 you can use the new guided DEMON CLEANER PAD RECOGNISER system! Make your cleaner setup a breeze!
+Important variables are set by the user as the system guides you through the process step by step with the UI! Choose cleaning modes, locate your nozzle cleaner, set XY start positions, set cleaning heights, & draw out cleaning paths! Plus auto save your settings to file!
+
+<img width="1303" height="845" alt="DCPR 2" src="https://github.com/user-attachments/assets/a1525748-45e3-4f87-be80-b3a07d17161c" />
+
+<img width="1573" height="1081" alt="DCPR 3" src="https://github.com/user-attachments/assets/5e0feb6e-6b39-41c1-911a-fca6280f65a1" />
+
+<br>
+<br>
+<br>
+
 
 ****************************************************************************************************************************
 

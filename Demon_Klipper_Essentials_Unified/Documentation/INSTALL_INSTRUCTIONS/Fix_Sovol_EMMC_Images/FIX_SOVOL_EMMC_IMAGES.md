@@ -180,11 +180,13 @@ Now you should be able to go the Klipper's machine tab & under the new `Update M
 >SV08 MAX users! If you replace Sovol Klipper with Mainline Klipper you will LOOSE FUNCTION of your Buffer_Stepper system! It is NOT useable with latest Klipper versions!!
 
 
-You should now have a fully updated machine!
+# You should now have a fully updated machine!
 
+<br>
 
-[Back to the main install instructions](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/blob/main/Documentation/INSTALL_INSTRUCTIONS/General_Setup_For_All_Printers/INSTALL_INSTRUCTIONS.md)
+### [Back to the main install instructions](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/blob/main/Documentation/INSTALL_INSTRUCTIONS/General_Setup_For_All_Printers/INSTALL_INSTRUCTIONS.md)
 
-[Back to the SV08 MAX install instructions](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/blob/main/Documentation/INSTALL_INSTRUCTIONS/SOVOL_SV08_MAX_SETUP/SV08_MAX_EXTRA_INSTRUCTIONS.md)
+### [Back to the SV08 MAX install instructions](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/blob/main/Documentation/INSTALL_INSTRUCTIONS/SOVOL_SV08_MAX_SETUP/SV08_MAX_EXTRA_INSTRUCTIONS.md)
 
+### [Back to the Mainline your Max guide](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/blob/main/Documentation/INSTALL_INSTRUCTIONS/SOVOL_SV08_MAX_SETUP/Mainline_Your_SV08_MAX.md)
 

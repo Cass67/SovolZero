@@ -9,6 +9,13 @@
 You should be sure to `[include mainsail.cfg]` as we will be using this! 
 When including this file you pay very close attention to any sections defined within it! They must not be duplicated within your printer.cfg file, for instance the pause/resume section will casue problems if its defined twice in your system!!
 
+<img width="1625" height="680" alt="My_Macros" src="https://github.com/user-attachments/assets/40e7d410-9bcb-4002-997a-838529bf0949" />
+
+
+<br>
+<br>
+<br>
+
 Create a new editable file in your /config directory...
 
 ```
@@ -34,11 +41,11 @@ Then choose your desired XY parking position - make sure it's at least 5mm away 
 
 Once you setup where you want/need the park position set the extruder retract/unretract movements & speeds etc.
 
-Now set the printer to park on print cancel. You can even define two locations if you wish, one for pause, & one for cancel. In the example below we just have the print parking in the same location as when paused. You can define a specific cancel print location too if you wish! Set your X Y loaction by changing the 'None" values to an axis position.
+It's now important to leave the park_at_cancel options set to False/None/None.
 
 ```
 < EAMPLE DO NOT COPY/PASTE THIS BLOCK - PARKING ON PRINT CANCEL >
-< variable_park_at_cancel   : True >
+< variable_park_at_cancel   : False >
 < variable_park_at_cancel_x : None >
 < variable_park_at_cancel_y : None >
 ```
@@ -97,7 +104,6 @@ Your new uncommented `_CLIENT_VARIABLE` macro should look like this when you're 
 
 BE SURE TO SAVE & RESTART!
 
-<img width="1627" height="728" alt="Mainsail Client Vars" src="https://github.com/user-attachments/assets/1af9b282-b1ca-4e44-8d25-4ee268d28a1d" />
 
 
 ### [Head back to where you were...](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/blob/main/Documentation/INSTALL_INSTRUCTIONS/General_Setup_For_All_Printers/INSTALL_INSTRUCTIONS.md#set-up-your-mainsailcfg-file)

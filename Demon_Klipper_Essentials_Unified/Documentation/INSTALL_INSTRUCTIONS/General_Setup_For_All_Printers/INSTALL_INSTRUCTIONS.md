@@ -41,6 +41,23 @@ You will need to edit your slicer's `Start G-code` & `End G-code` boxes to get t
 <br>
 <br>
 
+# :floppy_disk: NEED A FRESH START? :floppy_disk:
+
+Sometimes you might want to start on a blank canvas. Here's how to do that on a single page with ALL the commands you'll need to go from a totally blank SD card to a working system ready to build MCU firmware, edit your config files & finish your DKEU install!
+
+>[!NOTE]
+>This is meant for users of Mainline Klipper. Users on edited & stuck/fixed factory systems will need to start with flashing a new version of their factory image to continue, compatibility with all aspects & commands is in NO WAY assured!
+
+<br>
+
+### :red_circle: [CLICK HERE - CLEAN SLATE INSTALL GUIDE!](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/blob/main/Documentation/INSTALL_INSTRUCTIONS/General_Setup_For_All_Printers/Clean_Slate_Guide.md)
+
+<br>
+
+****************************************************************************************************************************
+
+<br>
+
 # NEW! COMPANION INSTALL VIDEO!
 
 Here's quick run-through of the general install process. This is NOT meant to replace the written instructions below, it's meant purely as a visual guide that will help you get the macros up & running on your system. By the time you're done you should be confident & comfortable working with the files on your printer to continue with setting up the macros further. 
@@ -248,15 +265,22 @@ See the dedictated instructions in the section below how to do that...
 <details>
     <summary>
         <b>
-        :red_circle: Click To Expand - How to do this!
+        :red_circle: Click To Expand - Update Kiauh & reinstall the Shell Script Extension!
         </b>
     </summary>
 <p>
 </p>
 
-To update Kiauh:
+To update Kiauh: 
+
 ```
-cd kiauh && git pull
+cd kiauh
+```
+```
+git config pull.ff only
+```
+```
+git pull
 ```
 
 HOWEVER be sure NOT to create an example file when asked by Kiauh!
@@ -269,21 +293,41 @@ JUST DELETE it being careful not to mess up the green auto save data above it.
 
 Save & restart!
 
-Once installed navigate to option E (Community: Extensions), then option 1 (G-code Shell Command) to REMOVE & the INSTALL the extension over.
+Once installed navigate to option E (Community: Extensions), then option 1 (G-code Shell Command) to REMOVE & then INSTALL the extension over.
 
 <img width="413" height="708" alt="Shell Install" src="https://github.com/user-attachments/assets/889fd85d-aeaf-4227-98bf-4bedee93f4b6" />
 
 </details>
+
+#### :warning: M112 ERROR - NEW BED_CHECKER SETTING FOR OLDER &/OR "FIXED" KLIPPER FACTORY MACHINES :warning:
+
+<details>
+    <summary>
+        <b>
+        :red_circle: Click To Expand - BED_CHECKER Macro errors out & stops the print!
+        </b>
+    </summary>
+<p>
+</p>
+
+### BED_CHECKER HEAT SOAK - M112 ERROR - NEW SETTING FOR OLDER KLIPPER VERSIONS! 
+
+In order to bring DKEU inline with recent changes to Klipper’s probing & measuring systems where the old method is now depreciated & is being removed the macros have been updated. 
+Users with new systems & mainline klipper need not do anything except update their Klipper version to the latest commit. However users with “stuck” or “fixed” versions of klipper like on Sovol printers for example will need to activate the old_klipper_version variable to continue using the BED_CHECKER heat soak system.
+
+#### :warning: If users of old stuck systems don’t set this variable True then BED_CHECKER heat soak will error out & cancel your print as your old version of klipper is no longer compatible with commands required to run it so a legacy mode must be enabled. :warning:
+
+<img width="555" height="96" alt="BCHS Old Klipper" src="https://github.com/user-attachments/assets/bbc1c7b6-7e52-4419-b034-27c82f930e43" />
+
+</details>
+
 <br>
-
-
-
 
 
 ### :recycle: UPDATING FROM A PREVIOUS VERSION - SSH CONFIG UPDATER SCRIPT! :recycle:
 
 >[!TIP]
->This script allows you to update ALL your Demon User Files across versions via interactive SSH Python script where it'll give you choices to bring in or bypass previously set values from your old files!!
+>This script allows you to mirgrate ALL your old Demon User Files settings across versions after certain updates when new files have been prompted to be extracted by the built in File_Handler system. This is done via interactive SSH Python script where it'll give you choices to bring in or bypass previously set values from your old files!!
 
 Thanks to the contributing legend that is Rotule666 (very apt name!) we have a brand new hugely expanded config updater tool! Over a few conversations regarding this script he came up with a whole new version of it for DKEU3!
 
@@ -299,8 +343,34 @@ Not only can you now update all the DKEU user files with it but you can also eve
     </summary>
 <p>
 </p>
+
+THERE ARE TWO MEHTODS! One for older systems like Bullseye & the one below for newer systems like Trixie where it's required to run 3rd party packages in virtual environments.
+
+To use this feature on most newer systems like Trixie (not for Bullseye - see below) you'll need to install a couple of things first. SSH into your printer.
+
+Debian Rich - most likely will already be installed but it needs to be in the virtual environment to work here.
+``` 
+~/klippy-env/bin/pip install -v rich
+```
+
+Wait for this to complete then run.
+
+Pypi.org ConfigUpdater
+```
+~/klippy-env/bin/pip install -v ConfigUpdater
+```
+
+These commands will install the libraries you need to run the interactive user file updater script.
+
+To use the feature use this command...
+
+```
+~/klippy-env/bin/python3 ~/printer_data/config/Demon_Klipper_Essentials_Unified/Other_Files/Demon_Install_Script/Demon_config_update.py
+```
+
+
     
-To use this new feature you'll need to install a couple of things first. SSH into your printer.
+This method works on Bullseye systems.
     
 ``` 
 python3 -m pip install rich
@@ -410,7 +480,7 @@ Come & join the community! We've just launched Demon Discord, help us start buil
 
 # :bangbang: Preparing Your Current System :bangbang:
 
-### MAKE A BACKUP!
+### :warning: MAKE A BACKUP!
 
 Make a backup of your current system now! Be sure you at least download your current `/config` folder BEFORE YOU DO ANYTHING ELSE!! You want have a set of UNTOUCHED files to refer back to if needed!
 
@@ -526,9 +596,6 @@ Once installed navigate to option E (Community: Extensions), then option 1 (G-co
 ****************************************************************************************************************************
 
 <br>
-<br>
-<br>
-
 
 # :warning: MAIN SSH INSTALLER HERE: :warning:
 ### RUN THIS FIRST FROM YOUR SSH TERMINAL TO START YOUR FULL INSTALL!
@@ -903,8 +970,15 @@ You must have the latest version of Kiauh installed & be using the latest shell 
 If you updated your include command but the error now says the file/directory can not be found, then you're using an old version of the shell script extension. You need make sure you have the latest version of Kiauh & then uninstall the shell script extension using Kiauh & install the newest version of it from the version you just downloaded!
 
 To update Kiauh:
+
 ```
-cd kiauh && git pull
+cd kiauh
+```
+```
+git config pull.ff only
+```
+```
+git pull
 ```
 
 HOWEVER be sure NOT to create an example file when asked by Kiauh!
@@ -917,7 +991,7 @@ JUST DELETE it being careful not to mess up the green auto save data above it.
 
 Save & restart!
 
-Once installed navigate to option E (Community: Extensions), then option 1 (G-code Shell Command) to REMOVE & the INSTALL the extension over.
+Once installed navigate to option E (Community: Extensions), then option 1 (G-code Shell Command) to REMOVE & then INSTALL the extension over.
 
 <img width="413" height="708" alt="Shell Install" src="https://github.com/user-attachments/assets/889fd85d-aeaf-4227-98bf-4bedee93f4b6" />
 
@@ -1328,6 +1402,12 @@ icon: sd
 method: printer.gcode.script
 params: {"script":"_RESET_FILE_STATE"}
 
+[menu __main custom cleaner_recogniser]
+name: Cleaner Recogniser
+icon: shuffle
+method: printer.gcode.script
+params: {"script":"DEMON_CLEANER_PAD_RECOGNISER"}
+
 ```
 
 The icons are appropriate if you use with the material-darker theme. Other theme’s icons may differ.
@@ -1485,10 +1565,25 @@ Found in the demon_user_settings_v2.9.cfg onwards.
 <br>
 <br>
 
-# NEW EDDY NG SUPPORT!! 
+# EDDY NG SUPPORT!! 
 
->[!IMPORTANT]
->Don't add any of the Eddy NG macros, just the printer.cfg sections. Their macros are not required with DKEU.
+>[!NOTE]
+>EDDY NG is looking like an abandoned project right now, new use of this software is no longer recommended & no further support will be given or included in DKEU. It will be phased out as it is causing nothing but issues with new installs & people have to "fix" a load of stuff for it to work with latest Klipper versions. So don't install it unless you want to solve issues.
+
+<br>
+
+### It is reomemmended to use native Klipper Eddy probe support as of now, or Cartographer or Beacon probes as alternatives.
+
+<details>
+    <summary>
+        <b>
+        :red_circle: Click To Expand - EDDY NG - PHASING OUT!
+        </b>
+    </summary>
+<p>
+</p>
+
+Don't add any of the Eddy NG macros, just the printer.cfg sections. Their macros are not required with DKEU.
 
 Follow the Eddy NG wiki & install Eddy NG, then build & install the MCU firmware, be sure to add the Eddy NG printer.cfg sections to your actual printer.cfg file. Do not use in another included file or the g-code offset adjustment system in Eddy NG will not work & you'll get a conflicting value error!
 
@@ -1503,7 +1598,9 @@ Choose if you wish to disable the bed heater temporarily while tap is in progres
 
 Don't forget to update your [.json file](https://github.com/3DPrintDemon/Demon_Klipper_Essentials_Unified/tree/main/Other_Files/DEMON_Macro_layout_JSON) to add the new EDDY NG setup macro.
 
->[!NOTE]
+</details>
+
+>[!IMPORTANT]
 >Do not use Demon Eddy or BTT Eddy files with EDDY NG!
 
 <br>
@@ -1643,12 +1740,36 @@ Use this link....
 Recognised slicer filament types at the moment are:
 - PLA
 - PLA+
+- PLA-CF
 - ASA
+- ASA-CF
+- ASA-GF
 - ABS
+- ABS-CF
+- ABS-GF
 - PET
+- PET-CF
+- PET-GF
 - PETG
+- PETG-CF
+- PETG-GF
 - FLEX
 - TPU
+
+<br>
+
+# Setup Your Nozzle Cleaning System
+
+From DKEU v3.2.1 you can use the new guided DEMON CLEANER PAD RECOGNISER system! Make your cleaner setup a breeze!
+Important variables are set by the user as the system guides you through the process step by step with the UI! Choose cleaning modes, locate your nozzle cleaner, set XY start positions, set cleaning heights, & draw out cleaning paths! Plus auto save your settings to file!
+
+<img width="1303" height="845" alt="DCPR 2" src="https://github.com/user-attachments/assets/a1525748-45e3-4f87-be80-b3a07d17161c" />
+
+<img width="1573" height="1081" alt="DCPR 3" src="https://github.com/user-attachments/assets/5e0feb6e-6b39-41c1-911a-fca6280f65a1" />
+
+<br>
+<br>
+<br>
 
 ****************************************************************************************************************************
 
@@ -1959,14 +2080,24 @@ Timer:2
 ```
 You need these two pins as the BTT relay firmware requires a reset command while the `PSon` pin is high. If this is not the case & the `PSon` pin is low (off) & you hit reset the relay power up but trip out again after 8 seconds. This is normal. The `PSon` pin must be high (on) when the reset is pressed. The PowerUp physical button will activate both GPIO pins together when pushed meaning you only need a single push of the physical button to control both pins & re-power the printer instantly.
 
-After that add this macro to your `macros.cfg`
+### OR.... IP Smart Plug With Power off Delay
+
+You MUST set the delay off feature in your plug's software so to give the printer a chance to send the command & then shut itself down safely before the plug cuts the power.
+
 ```
-[gcode_macro M81]
-gcode:
- {action_call_remote_method("set_device_power",device="Printer Power",state="off")}
+[power Printer Power]
+type:tplink_smartplug
+address: xxx.xxx.xx.xx #<<<<<<<<< ADD YOUR PLUG ADDRESS HERE!
+on_when_job_queued: True
+initial_state:on
+locked_while_printing: True
+restart_klipper_when_powered: True
+restart_delay: 2
+bound_services:
+
 ```
 
-Lastly this is used by the `PRINT_END` macro to select the Auto Shutdown feature & should be pasted into your `printer.cfg` file.
+Lastly this is used by the `DEMON_END` macro to select the Auto Shutdown feature & should be pasted into your `printer.cfg` file.
 ```
 [output_pin PRINTER_AUTO_OFF]
 pin: ### <<<<<< Insert unused board pin for state change only, monitored by system
